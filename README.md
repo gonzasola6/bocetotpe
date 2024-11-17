@@ -6,42 +6,152 @@
     * Gonzalo Sola
     * Ariadna Cataldi
 
-## Descripción:
+## Descripción
 
-Diseño de la Base de Datos:
-
-La base de datos está diseñada para almacenar un conjunto de elementos, que en este caso son álbumes y autores, con una relación de 1 a N.
-El diseño se basa en diferentes discos con sus datos, que se relacionan directamente con los autores y sus respectivos datos.
-
-
-El modelo de datos incluye dos tablas principales:
-
-* Tabla Álbumes:
-Atributos: ID_Album (clave primaria), nombre (nombre del álbum), lanzamiento (fecha de lanzamiento), cantCanciones (cantidad de canciones), genero (género musical), ID_Autor (clave foránea que referencia a la tabla Autores).
-
-* Tabla Autores:
-Atributos: ID_Autor (clave primaria), nombre (nombre del autor), pais (país de origen), cantAlbumes (cantidad de álbumes publicados).
-La clave foránea ID_Autor en la tabla Álbumes se refiere a la clave primaria ID_Autor en la tabla Autores, estableciendo una relación de 1 a N. Es decir, un autor puede estar asociado a múltiples álbumes, pero cada álbum solo puede estar asociado a un único autor.
-
-Este diseño define las claves primarias y las relaciones entre las entidades, permitiendo modelar los ítems con sus respectivos detalles.
-
-Mediante los ID se puede relacionar los albumes con sus respectivos autores y poder encontrar sus atributos, ya que obtenemos una "clave única", para acceder a los atributos de su respectiva tabla.
+En este proyecto se desarrolla una API para administrar los autores de la disqueria, pudiendo listar todos los autores, obtener un autor en concreto, agregar, editar o eliminar autores, etc.
 
 
 
-## DER
+## Documentación de la API
 
-![Diagrama Entidad Relación](/der.png)
+### Endpoints 
+|       Request         | Método |      Endpoint        | Status Success |  Status Error    |
+|-----------------------|--------|----------------------|----------------|------------------|
+| Listar autores        |  GET   | /api/autores         |       200      |  404             |
+| Obtener autor         |  GET   | /api/autores/:id     |       200      |  400/404         |
+| Agregar autor         |  POST  | /api/autores         |       201      |  400/401/404/500 |
+| Editar autor          |  PUT   | /api/autores/:id     |       201      |  400/401/404     |
+| Obtener token         |  GET   | /api/usuarios/token  |       200      |  400             |
+
+---
+
+### Listar autores (GET)
+
+Esta endpoint permite obtener una lista de los autores disponibles, con opciones para filtrar, ordenar y paginar los resultados.
+
+```http
+GET /api/productos
+```
+
+**Filtrado**:  
+Se pueden filtrar los resultados por cualquiera de los campos `nombre`,`pais`, `cantAlbumes`. En el parámetro `filterBy` se debe escribir el campo y en `value` el valor a buscar. En caso de no especificar el parámetro `filterBy` correctamente, se devolverá la lista de productos filtrados por nombre.
+
+***Ejemplo de filtrado***:  
+Obtiene todos los autores que el pais sea Argentina:
+```http
+GET /api/autores?filterBy=pais&value=argentina
+ ```
+
+**Orden**:  
+Se pueden ordenar los resultados por cualquiera de los campos `nombre`, `pais`, `cantAlbum` de forma ascendente (`ASC`) o descendente (`DESC)`. Si no se pone el parámetro `orderBy` se devuelve la lista de productos ordenados por id. En caso de no poner 'ASC' o 'DESC' en el parámetro `orderValue` la lista se ordenará en orden ascendente. 
+  
+***Ejemplo de ordenamiento***:  
+Obtiene todos los productos, ordenados por precio en orden descendente:
+  ```http
+  GET /api/autores?orderBy=cantAlbumes&orderValue=DESC
+  ```
 
 
-##EXPLICACION DE: cómo desplegar el sitio en un servidor con Apache y MySQL
- 
+**Paginación**:  
+Se puede limitar la cantidad de resultados por página a un número específico, además de seleccionar la página deseada. En el parámetro `page` se debe especificar la página deseada y en `limit` el límite máximo de elementos por página.
 
-Para desplegar el sitio web, se deberá descargar XAMPP, que es un sistema de Software Libre, que gestiona Bases de Datos y nos proporciona un entorno de Servidor Local. Este sistema viene con Apache y MySql incluido, siendo el primero el servidor web, y el segundo, el sistema de gestión de bases de datos. 
-Una vez instalado XAMPP, hay que activar ("start") Apache y MySql. Para abrir el proyecto, hay que descargarlo y ubicarlo dentro de la carpeta htdocs. Esta carpeta se encuentra dentro otra carpeta llamada XAMPP, ubicada en el disco C. 
-Una vez realizado todo eso, se podrá abrir el proyecto en el entorno que elijamos, y en el navegador predeterminado de la computadora que estemos utilizando. Esto lo vamos a hacer escribiiendo esto en el buscador del nav. : localhost/disqueria
-A partir de ahí, ya ingresaremos al proyecto y podremos visualizar toda la información perteneciente a la base de datos. Y a partir del LogIn (US: webadmin PSW: admin) se podrá acceder a la lectura, creación, modificación y eliminación de cada uno de los datos. 
-Sin hacer ese LogIn, el usuario no podrá acceder al CRUD del proyecto. 
+**Ejemplo de paginación**:  
+Obtiene los autores de la página 1 con límite a 4 productos por página:
+```http
+GET /api/autores?page=1&limit=4
+```
+
+---
+
+### Obtener producto (GET)
+
+Devuelve un producto específico mediante su `id`.
+
+```http
+GET /api/autores/:id
+```
+**Ejemplo de request**:
+Obtiene el producto con el `id_producto`: 14;
+```http
+GET /api/productos/14
+```
+
+---
+
+### Agregar un producto (POST)
+
+* Requiere autenticación del usuario.
+
+Inserta un nuevo autor con los valores delos campos enviados en el cuerpo de la solicitud en formato JSON. 
+
+```http
+POST /api/autores
+```
+
+**Ejemplo de body de request**:
+
+
+```json
+{
+    "nombre": "Mala Fama",
+    "pais": "Argentina",
+    "cantAlbumes": "2"
+}
+```
+
+
+### Editar un autor (PUT)
+* Requiere autenticación del usuario.
+
+Modifica un autor segun el id con la información enviada para los campos en el cuerpo de la solicitud en formato JSON.
+```http
+PUT /api/autores/:id
+```
+
+**Ejemplo de request**:
+```http
+PUT /api/autor/12
+```
+**body**:
+```json
+{
+    "nombre": "Marcelo Ju",
+    "pais": "Colombia",
+    "cantAlbumes": "7"
+  }
+```
+
+---
+
+### Eliminar un producto (DELETE)
+* Requiere autenticación del usuario.
+
+Elimina un autor específico mediante su `id`.
+```http
+DELETE /api/autor/:id
+```
+
+**Ejemplo de request**:
+```http
+DELETE /api/autores/2
+```
+
+---
+
+### Autenticar (GET)
+
+Para acceder a ciertas funcionalidades, se debe autenticar utilizando un token.
+```http
+GET /api/usuarios/token
+```
+
+**Credenciales Basic Auth**
+
+- **Nombre de usuario:** `webadmin`
+- **Password:** `admin`
+
+Se devolverá un token que puede ser utilizado para la autenticación de futuras solicitudes a la API (POST, PUT o DELETE).
+
 
 
 ----API-RESTfull----

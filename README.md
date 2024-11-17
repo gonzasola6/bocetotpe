@@ -44,3 +44,14 @@ A partir de ahí, ya ingresaremos al proyecto y podremos visualizar toda la info
 Sin hacer ese LogIn, el usuario no podrá acceder al CRUD del proyecto. 
 
 
+----API-RESTfull----
+
+La API RestFull, permite que distintos sistemas puedan interaccionar entre sí, esto se da a través de la aquitectura cliente-servidor, donde se utiliza la transmisión de información mediante el protocolo HTTP. 
+Desarrollamos una API con la misma base de datos que veníamos trabajando, para que de esta manera, se pueda utilizar para conectarse e interaccionar con otro sistema. 
+A la API no le hicimos una vista, ya que de eso se encargará otra persona que quiera utilizarla. Solo incluimos dentro de la vista, los posibles errores que pueden ocurrir y haciendo que los datos, se expresen en formato JSON (que es el formato de respuesta que debe tener la API). 
+Para probar esta, lo hicimos mediante Postman y Thunder Client. Probando los distintos tipos de solucitudes GET, POST, PUT Y DELETE. Esto hacía que podamos mostrar, agregar, modificar y eliminar datos de la base.
+A su vez, incluimos dos ordenes para que los datos se ordenen de manera ascendente (que es la opción que se realiza por defecto) y de manera descendente, para que así luego el cliente pueda tener la función de ordenamiento de los datos. 
+
+
+
+

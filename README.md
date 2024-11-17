@@ -63,17 +63,17 @@ GET /api/autores?page=1&limit=4
 
 ---
 
-### Obtener producto (GET)
+### Obtener Autor (GET)
 
-Devuelve un producto específico mediante su `id`.
+Devuelve un Autor específico mediante su `id`.
 
 ```http
 GET /api/autores/:id
 ```
 **Ejemplo de request**:
-Obtiene el producto con el `id_producto`: 14;
+Obtiene el autor con el `Id_Autor`: 2;
 ```http
-GET /api/productos/14
+GET /api/autor/2
 ```
 
 ---
@@ -151,6 +151,11 @@ GET /api/usuarios/token
 - **Password:** `admin`
 
 Se devolverá un token que puede ser utilizado para la autenticación de futuras solicitudes a la API (POST, PUT o DELETE).
+
+Para poder autenticarse, se debe acceder al endpoint de mencionado en autenticar, usando en los Auth Basic las credenciales, lo que nos devolvera el Token a utilizar para hacer alguna acción, se debe copiar.
+Luego para agergar por ejemplo, a la hora de poner "Send", en los Headers se debe poner "Authorization" en la primer casilla, y luego "Bearer *token*" en la segunda. Esto verificara la autenticación y dejará ejecutar la acción.
+Por ejemplo:
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsIm5vbWJyZSI6IndlYmFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzMxODgyNDMzLCJleHAiOjE3MzE4ODMwMzN9.zslt44CJVZdZIxI9jD3EmrSgRMDfxeu3Yhai2edFxXE
 
 
 

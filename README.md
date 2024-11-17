@@ -73,7 +73,7 @@ GET /api/autores/:id
 **Ejemplo de request**:
 Obtiene el autor con el `Id_Autor`: 2;
 ```http
-GET /api/autor/2
+GET /api/autores/2
 ```
 
 ---
@@ -110,7 +110,7 @@ PUT /api/autores/:id
 
 **Ejemplo de request**:
 ```http
-PUT /api/autor/12
+PUT /api/autores/12
 ```
 **body**:
 ```json
@@ -128,7 +128,7 @@ PUT /api/autor/12
 
 Elimina un autor específico mediante su `id`.
 ```http
-DELETE /api/autor/:id
+DELETE /api/autores/:id
 ```
 
 **Ejemplo de request**:

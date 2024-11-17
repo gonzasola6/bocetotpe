@@ -43,7 +43,7 @@ GET /api/autores?filterBy=pais&value=argentina
  ```
 
 **Orden**:  
-Se pueden ordenar los resultados por cualquiera de los campos `nombre`, `pais`, `cantAlbum` de forma ascendente (`ASC`) o descendente (`DESC)`. Si no se pone el parámetro `orderBy` se devuelve la lista de productos ordenados por id. En caso de no poner 'ASC' o 'DESC' en el parámetro `orderValue` la lista se ordenará en orden ascendente. 
+Se pueden ordenar los resultados por cualquiera de los campos `nombre`, `pais`, `cantAlbum` de forma ascendente (`ASC`) o descendente (`DESC)`. Si no se pone el parámetro `orderBy` se devuelve la lista de autores ordenados por id. En caso de no poner 'ASC' o 'DESC' en el parámetro `orderValue` la lista se ordenará en orden ascendente. 
   
 ***Ejemplo de ordenamiento***:  
 Obtiene todos los autores, ordenados por precio en orden descendente:
@@ -56,7 +56,7 @@ Obtiene todos los autores, ordenados por precio en orden descendente:
 Se puede limitar la cantidad de resultados por página a un número específico, además de seleccionar la página deseada. En el parámetro `page` se debe especificar la página deseada y en `limit` el límite máximo de elementos por página.
 
 **Ejemplo de paginación**:  
-Obtiene los autores de la página 1 con límite a 4 productos por página:
+Obtiene los autores de la página 1 con límite a 4 autores por página:
 ```http
 GET /api/autores?page=1&limit=4
 ```

@@ -155,7 +155,8 @@ Se devolverá un token que puede ser utilizado para la autenticación de futuras
 Para poder autenticarse, se debe acceder al endpoint de mencionado en autenticar, usando en los Auth Basic las credenciales, lo que nos devolvera el Token a utilizar para hacer alguna acción, se debe copiar.
 Luego para agergar por ejemplo, a la hora de poner "Send", en los Headers se debe poner "Authorization" en la primer casilla, y luego "Bearer *token*" en la segunda. Esto verificara la autenticación y dejará ejecutar la acción.
 Por ejemplo:
-Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsIm5vbWJyZSI6IndlYmFkbWluIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzMxODgyNDMzLCJleHAiOjE3MzE4ODMwMzN9.zslt44CJVZdZIxI9jD3EmrSgRMDfxeu3Yhai2edFxXE
+
+* Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI...
 
 
 

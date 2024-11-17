@@ -27,14 +27,14 @@ En este proyecto se desarrolla una API para administrar los autores de la disque
 
 ### Listar autores (GET)
 
-Esta endpoint permite obtener una lista de los autores disponibles, con opciones para filtrar, ordenar y paginar los resultados.
+Esta endpoint permite obtener una lista de los autores de los álbumes de la disqueria, con opciones para filtrar, ordenar y paginar los resultados.
 
 ```http
-GET /api/productos
+GET /api/autores
 ```
 
 **Filtrado**:  
-Se pueden filtrar los resultados por cualquiera de los campos `nombre`,`pais`, `cantAlbumes`. En el parámetro `filterBy` se debe escribir el campo y en `value` el valor a buscar. En caso de no especificar el parámetro `filterBy` correctamente, se devolverá la lista de productos filtrados por nombre.
+Se pueden filtrar los resultados por cualquiera de los campos `nombre`,`pais`, `cantAlbumes`. En el parámetro `filterBy` se debe escribir el campo y en `value` el valor a buscar.
 
 ***Ejemplo de filtrado***:  
 Obtiene todos los autores que el pais sea Argentina:
@@ -46,9 +46,9 @@ GET /api/autores?filterBy=pais&value=argentina
 Se pueden ordenar los resultados por cualquiera de los campos `nombre`, `pais`, `cantAlbum` de forma ascendente (`ASC`) o descendente (`DESC)`. Si no se pone el parámetro `orderBy` se devuelve la lista de productos ordenados por id. En caso de no poner 'ASC' o 'DESC' en el parámetro `orderValue` la lista se ordenará en orden ascendente. 
   
 ***Ejemplo de ordenamiento***:  
-Obtiene todos los productos, ordenados por precio en orden descendente:
+Obtiene todos los autores, ordenados por precio en orden descendente:
   ```http
-  GET /api/autores?orderBy=cantAlbumes&orderValue=DESC
+  GET /api/autores?orderBy=cantAlbumes&order=DESC
   ```
 
 
@@ -78,11 +78,11 @@ GET /api/autor/2
 
 ---
 
-### Agregar un producto (POST)
+### Agregar un Autor (POST)
 
 * Requiere autenticación del usuario.
 
-Inserta un nuevo autor con los valores delos campos enviados en el cuerpo de la solicitud en formato JSON. 
+Inserta un nuevo autor con los valores de los campos enviados en el cuerpo de la solicitud en formato JSON. 
 
 ```http
 POST /api/autores
@@ -123,7 +123,7 @@ PUT /api/autor/12
 
 ---
 
-### Eliminar un producto (DELETE)
+### Eliminar un Autor (DELETE)
 * Requiere autenticación del usuario.
 
 Elimina un autor específico mediante su `id`.

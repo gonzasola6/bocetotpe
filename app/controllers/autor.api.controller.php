@@ -73,6 +73,10 @@ class AutorApiController{
     }
 
     public function delete($req, $res){
+
+        if (!$res->user) {
+            return $this->view->response("No autorizado", 401);
+        }
         $id= $req->params->id;
 
         $autor= $this->model->getAutor($id);

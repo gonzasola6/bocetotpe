@@ -8,7 +8,7 @@
 
 ## Descripción
 
-En este proyecto se desarrolla una API para administrar los autores de la disqueria, pudiendo listar todos los autores, obtener un autor en concreto, agregar, editar o eliminar autores, etc.
+En este proyecto se desarrolla una API para administrar los autores de los álbumes de la disqueria, con la posibilidad de listar todos los autores, un autor en específico, agregar, editar o eliminar autores, etc. (CRUD)
 
 
 
